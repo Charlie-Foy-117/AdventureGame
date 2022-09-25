@@ -14,10 +14,55 @@ void PrintPlayer(Player playerInfo)
         << "Health: " << playerInfo.health << std::endl
         << "Attack: " << playerInfo.attack << std::endl
         << "Weapon: " << playerInfo.weapon << std::endl
-        << "Armour: " << playerInfo.armour << std::endl;
-       // << "Inventory: " << playerInfo.inventory << std::endl;
+        << "Armour: " << playerInfo.armour << std::endl
+        << " " << std::endl;
+        std::cout << playerInfo.name << "'s Inventory:" << std::endl;
+        for (size_t i = 0; i < playerInfo.inventory.size(); i++)
+        {
+            std::cout << playerInfo.inventory[i] << std::endl;
+        }
+        std::cout << " " << std::endl;
 }
 
+void PrintMonster(Monster monsterInfo)
+{
+    std::cout << "Name: " << monsterInfo.name << std::endl
+        << "Description: " << monsterInfo.description << std::endl
+        << "Health: " << monsterInfo.health << std::endl
+        << "Attack: " << monsterInfo.attack << std::endl
+        << " " << std::endl;
+}
+
+void PrintArea(Area areaInfo)
+{
+    std::cout << "Name: " << areaInfo.name << std::endl
+        << "Description: " << areaInfo.description << std::endl
+        << "Contents: " << std::endl;
+        for (size_t i = 0; i < areaInfo.contents.size(); i++)
+        {
+            std::cout << areaInfo.contents[i] << std::endl;
+        }
+        std::cout << "Exits: " << std::endl;
+        for (size_t i = 0; i < areaInfo.exits.size(); i++)
+        {
+            std::cout << areaInfo.exits[i] << std::endl;
+        }
+        std::cout << " " << std::endl;
+}
+
+void PrintFeature(Feature featureInfo)
+{
+    std::cout << "Name: " << featureInfo.name << std::endl
+        << "Description: " << featureInfo.description << std::endl
+        << " " << std::endl;
+}
+
+void PrintItem(Item itemInfo)
+{
+    std::cout << "Name: " << itemInfo.name << std::endl
+        << "Description: " << itemInfo.description << std::endl
+        << " " << std::endl;
+}
 
 int main()
 {
@@ -29,7 +74,7 @@ int main()
     cayde.attack = 25;
     cayde.weapon = "Flaming pistol";
     cayde.armour = "Cowboy set";
-    cayde.inventory = { "bullets", cayde.weapon, cayde.armour + " armour" };
+    cayde.inventory = { "Bullets", cayde.weapon, cayde.armour + " armour" };
 
     Player ikora;
     ikora.name = "Ikora";
@@ -38,7 +83,7 @@ int main()
     ikora.attack = 40;
     ikora.weapon = "Condensed Void";
     ikora.armour = "Robes of Magnus set";
-    ikora.inventory = { "energy crystals", ikora.weapon, ikora.armour + " armour" };
+    ikora.inventory = { "Energy crystals", ikora.weapon, ikora.armour + " armour" };
 
     Player zavala;
     zavala.name = "Zavala";
@@ -47,7 +92,7 @@ int main()
     zavala.attack = 10;
     zavala.weapon = "Fists of Flurry";
     zavala.armour = "Battleworn Metal set";
-    zavala.inventory = { "rage booster", zavala.weapon, zavala.armour + " armour" };
+    zavala.inventory = { "Rage booster", zavala.weapon, zavala.armour + " armour" };
 
     PrintPlayer(cayde);
     PrintPlayer(ikora);
@@ -68,52 +113,68 @@ int main()
 
     Monster allfather;
     allfather.name = "The Allfather of the Distant Shores";
-    swampDweller.description = "King of the old kind, Conqueuer of the new";
-    swampDweller.health = 500;
-    swampDweller.attack = 40;
+    allfather.description = "King of the old kind, Conqueuer of the new";
+    allfather.health = 500;
+    allfather.attack = 40;
+
+    //PrintMonster(swampDweller);
+    //PrintMonster(rustee);
+    //PrintMonster(allfather);
 
     //area classes
     Area wailingMarsh;
     wailingMarsh.name = "Wailing Marsh";
-    wailingMarsh.decription = "The corrupted lands that speaks";
-    wailingMarsh.contents = {};
+    wailingMarsh.description = "The corrupted lands that speaks";
+    wailingMarsh.contents = {"Trees", "Wildlife", "Ponds"};
     wailingMarsh.exits = { "Northern passge way", "Drowned gateway" };
 
     Area fallenFortress;
     fallenFortress.name = "Fallen Fortress";
-    fallenFortress.decription = "The last memory of what once was";
-    fallenFortress.contents = {};
+    fallenFortress.description = "The last memory of what once was";
+    fallenFortress.contents = {"Rubble", "Swords and Shields", "Wooden Spikes"};
     fallenFortress.exits = { "Eastern pathway", "Road to the undercove", "The pit" };
 
     Area cloudedCity;
     cloudedCity.name = "Clouded City";
-    cloudedCity.decription = "The city above all";
-    cloudedCity.contents = {};
+    cloudedCity.description = "The city above all";
+    cloudedCity.contents = {"Clouds", "Castles", "Golden Furniture"};
     cloudedCity.exits = { "Stairway up", "The cloud bridge" };
 
+    //PrintArea(wailingMarsh);
+    //PrintArea(fallenFortress);
+    //PrintArea(cloudedCity);
+
     //feature
-    Feature null;
-    null.name = "";
-    null.description = "";
+    Feature feature;
+    feature.name = "feature";
+    feature.description = "feature";
 
-    Feature null;
-    null.name = "";
-    null.description = "";
+    Feature feature2;
+    feature.name = "feature";
+    feature.description = "feature";
 
-    Feature null;
-    null.name = "";
-    null.description = "";
+    Feature feature3;
+    feature.name = "feature";
+    feature.description = "faeture";
+
+    //PrintFeature(feature);
+    //PrintFeature(feature2);
+    //PrintFeature(feature3);
 
     //item
     Item healthPot;
     healthPot.name = "Potion of restoration";
     healthPot.description = "Will heal player for 20 health points";
 
-    Item key;
-    key.name = "Potion of strength";
-    key.description = "Will make next attack done by player deal an addtional 20 points";
+    Item strePot;
+    strePot.name = "Potion of strength";
+    strePot.description = "Will make next attack done by player deal an addtional 20 points";
 
     Item mossCrown;
     mossCrown.name = "Crown of Moss";
     mossCrown.description = "Does nothing, player looks cool";
+
+    //PrintItem(healthPot);
+    //PrintItem(strePot);
+    //PrintItem(mossCrown);
 }
