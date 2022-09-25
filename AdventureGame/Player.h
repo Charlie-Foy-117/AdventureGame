@@ -6,8 +6,8 @@ class Player
 public:
 	std::string name;
 	std::string description;
-	int health;
-	int attack;
+	int health = 0;
+	int attack = 0;
 	std::string weapon;
 	std::string armour;
 	std::vector<std::string> inventory;
