@@ -2,6 +2,11 @@
 //
 
 #include <iostream>
+#include "Player.h"
+#include "Monster.h"
+#include "Feature.h"
+#include "Item.h"
+#include "Area.h"
 
 int main()
 {
