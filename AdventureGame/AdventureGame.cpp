@@ -7,55 +7,6 @@
 #include "Feature.h"
 #include "Item.h"
 #include "Area.h"
-void PrintPlayer(Player playerInfo)
-{
-    std::cout << "Name: " << playerInfo.name << std::endl
-        << "Description: " << playerInfo.description << std::endl
-        << "Health: " << playerInfo.health << std::endl
-        << "Attack: " << playerInfo.attack << std::endl
-        << "Weapon: " << playerInfo.weapon << std::endl
-        << "Armour: " << playerInfo.armour << std::endl
-        << " " << std::endl;
-        std::cout << playerInfo.name << "'s Inventory:" << std::endl;
-        for (size_t i = 0; i < playerInfo.inventory.size(); i++)
-        {
-            std::cout << playerInfo.inventory[i] << std::endl;
-        }
-        std::cout << " " << std::endl;
-}
-
-void PrintMonster(Monster monsterInfo)
-{
-    std::cout << "Name: " << monsterInfo.name << std::endl
-        << "Description: " << monsterInfo.description << std::endl
-        << "Health: " << monsterInfo.health << std::endl
-        << "Attack: " << monsterInfo.attack << std::endl
-        << " " << std::endl;
-}
-
-void PrintArea(Area areaInfo)
-{
-    std::cout << "Name: " << areaInfo.name << std::endl
-        << "Description: " << areaInfo.description << std::endl
-        << "Contents: " << std::endl;
-        for (size_t i = 0; i < areaInfo.contents.size(); i++)
-        {
-            std::cout << areaInfo.contents[i] << std::endl;
-        }
-        std::cout << "Exits: " << std::endl;
-        for (size_t i = 0; i < areaInfo.exits.size(); i++)
-        {
-            std::cout << areaInfo.exits[i] << std::endl;
-        }
-        std::cout << " " << std::endl;
-}
-
-void PrintFeature(Feature featureInfo)
-{
-    std::cout << "Name: " << featureInfo.name << std::endl
-        << "Description: " << featureInfo.description << std::endl
-        << " " << std::endl;
-}
 
 void PrintItem(Item itemInfo)
 {
@@ -94,9 +45,6 @@ int main()
     zavala.armour = "Battleworn Metal set";
     zavala.inventory = { "Rage booster", zavala.weapon, zavala.armour + " armour" };
 
-    PrintPlayer(cayde);
-    PrintPlayer(ikora);
-    PrintPlayer(zavala);
 
     //monster classes
     Monster swampDweller;
@@ -117,33 +65,27 @@ int main()
     allfather.health = 500;
     allfather.attack = 40;
 
-    //PrintMonster(swampDweller);
-    //PrintMonster(rustee);
-    //PrintMonster(allfather);
 
     //area classes
     Area wailingMarsh;
     wailingMarsh.name = "Wailing Marsh";
-    wailingMarsh.description = "The corrupted lands that speaks";
+    wailingMarsh.description = "Wailing Marsh: The corrupted lands that speaks";
     wailingMarsh.contents = {"Swamp Dweller", "Health Potion", "Swords"};
-    wailingMarsh.exits = { "Northern passge way", "Drowned gateway" };
+    wailingMarsh.exits = { "Northern passge way - To Clouded City", "Drowned gateway - To Fallen Fortress" };
 
     Area fallenFortress;
     fallenFortress.name = "Fallen Fortress";
-    fallenFortress.description = "The last memory of what once was";
+    fallenFortress.description = "Fallen Fortress: The last memory of what once was";
     fallenFortress.contents = {"Strength Potion", "Rust-EE", "Key"};
-    fallenFortress.exits = { "Eastern pathway", "Road to the undercove", "The pit" };
+    fallenFortress.exits = { "Eastern pathway - To Wailing Marsh", "The pit - To Clouded City" };
 
     Area cloudedCity;
     cloudedCity.name = "Clouded City";
-    cloudedCity.description = "The city above all";
+    cloudedCity.description = "Clouded City: The city above all";
     cloudedCity.contents = {"Lever", "Allfather", "Lock"};
-    cloudedCity.exits = { "Stairway up", "The cloud bridge" };
+    cloudedCity.exits = { "Stairway up - To Fallen Fortress", "The cloud bridge - To Wailing Marsh" };
 
-    //PrintArea(wailingMarsh);
-    //PrintArea(fallenFortress);
-    //PrintArea(cloudedCity);
-
+    
     //feature
     Feature lock;
     lock.name = "Lock";
@@ -157,9 +99,6 @@ int main()
     lever.name = "Lever";
     lever.description = "When pulled boss fight starts";
 
-    //PrintFeature(feature);
-    //PrintFeature(feature2);
-    //PrintFeature(feature3);
 
     //item
     Item healthPot;
@@ -174,7 +113,11 @@ int main()
     key.name = "Key";
     key.description = "Unlocks lock";
 
-    //PrintItem(healthPot);
-    //PrintItem(strePot);
-    //PrintItem(mossCrown);
+    fallenFortress.Look();
+    wailingMarsh.PrintArea();
+    ikora.PrintPlayer();
+    swampDweller.PrintMonster();
+    lock.PrintFeature();
+    healthPot.PrintItem();
+    
 }

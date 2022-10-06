@@ -4,6 +4,13 @@
 class Player
 {
 public:
+	//constructors
+
+	//functions/methods
+	void PrintPlayer();
+	void Go();
+
+	//variables
 	std::string name;
 	std::string description;
 	int health = 0;
