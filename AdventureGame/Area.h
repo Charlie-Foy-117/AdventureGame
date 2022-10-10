@@ -5,6 +5,10 @@ class Area
 {
 public:
 	//constructors
+	Area();
+	Area(std::string newName, std::string newDescription, std::vector<std::string> newContents, std::vector<std::string> newExits);
+	~Area();
+
 
 	//functions/methods
 	void PrintArea();

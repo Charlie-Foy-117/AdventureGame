@@ -1,6 +1,35 @@
 #include "Player.h"
 #include <iostream>
 
+Player::Player()
+    :name(" ")
+    , description(" ")
+    , health(0)
+    , attack(0)
+    , weapon(" ")
+    , armour(" ")
+    , currentArea(" ")
+{
+    std::cout << "Player Constructed" << std::endl;
+}
+
+Player::Player(std::string newName, std::string newDescription, int newHealth, int newAttack, std::string newWeapon, std::string newArmour, std::string newCurrentArea)
+    :name(newName)
+    ,description(newDescription)
+    ,health(newHealth)
+    ,attack(newAttack)
+    ,weapon(newWeapon)
+    ,armour(newArmour)
+    ,currentArea(newCurrentArea)
+{
+    std::cout << "Player Constructed with Parameters" << std::endl;
+}
+
+Player::~Player()
+{
+    std::cout << "Player Destoryed" << std::endl;
+}
+
 void Player::PrintPlayer()
 {
     std::cout << "Name: " << name << std::endl
@@ -9,6 +38,7 @@ void Player::PrintPlayer()
         << "Attack: " << attack << std::endl
         << "Weapon: " << weapon << std::endl
         << "Armour: " << armour << std::endl
+        << "Current Area: " << currentArea << std::endl
         << " " << std::endl;
     std::cout << name << "'s Inventory:" << std::endl;
     for (size_t i = 0; i < inventory.size(); i++)
@@ -18,7 +48,8 @@ void Player::PrintPlayer()
     std::cout << " " << std::endl;
 }
 
-void Player::Go()
+void Player::Go(std::string newCurrentArea)
 {
-
+    currentArea = newCurrentArea;
+    std::cout << "Chosen Pathway: " << newCurrentArea << std::endl;
 }

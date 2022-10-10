@@ -8,15 +8,9 @@
 #include "Item.h"
 #include "Area.h"
 
-void PrintItem(Item itemInfo)
-{
-    std::cout << "Name: " << itemInfo.name << std::endl
-        << "Description: " << itemInfo.description << std::endl
-        << " " << std::endl;
-}
-
 int main()
 {
+    
     //player classes
     Player cayde;
     cayde.name = "Cayde";
@@ -25,6 +19,7 @@ int main()
     cayde.attack = 25;
     cayde.weapon = "Flaming pistol";
     cayde.armour = "Cowboy set";
+    cayde.currentArea = "Wailing Marsh";
     cayde.inventory = { "Bullets", cayde.weapon, cayde.armour + " armour" };
 
     Player ikora;
@@ -34,6 +29,7 @@ int main()
     ikora.attack = 40;
     ikora.weapon = "Condensed Void";
     ikora.armour = "Robes of Magnus set";
+    ikora.currentArea = "Wailing Marsh";
     ikora.inventory = { "Energy crystals", ikora.weapon, ikora.armour + " armour" };
 
     Player zavala;
@@ -43,7 +39,9 @@ int main()
     zavala.attack = 10;
     zavala.weapon = "Fists of Flurry";
     zavala.armour = "Battleworn Metal set";
+    zavala.currentArea = "Wailing Marsh";
     zavala.inventory = { "Rage booster", zavala.weapon, zavala.armour + " armour" };
+    
 
 
     //monster classes
@@ -112,12 +110,59 @@ int main()
     Item key;
     key.name = "Key";
     key.description = "Unlocks lock";
-
-    fallenFortress.Look();
-    wailingMarsh.PrintArea();
-    ikora.PrintPlayer();
-    swampDweller.PrintMonster();
-    lock.PrintFeature();
-    healthPot.PrintItem();
     
+    
+    //ikora.PrintPlayer();
+    //ikora.Go("Fallen Fortress");
+    //ikora.PrintPlayer();
+    //fallenFortress.Look();
+    //wailingMarsh.PrintArea(); 
+    //swampDweller.PrintMonster();
+    //lock.PrintFeature();
+    //healthPot.PrintItem();
+    
+    std::string userStringInput;
+    int userIntInput = 0;
+    
+    std::cout << "You awake in the wailing marsh" << std::endl
+        << "What would you like to do: " << std::endl
+        << "   look" << std::endl
+        << "   help" << std::endl;
+
+    
+    std::cin >> userStringInput;
+    if (userStringInput == "look")
+    {
+        std::cout << "Look where?" << std::endl
+            << "    here" << std::endl
+            << "    monster" << std::endl;
+    }
+    std::cin >> userStringInput;
+    
+  
+    if (userStringInput == "here")
+    {
+        wailingMarsh.Look();
+    }
+    if (userStringInput == "monster")
+    {
+        swampDweller.PrintMonster();
+    }
+    std::cout << "What would you like to do: " << std::endl
+        << "   go" << std::endl
+        << "   look" << std::endl
+        << "   help" << std::endl;
+    std::cin >> userStringInput;
+
+    if (userStringInput == "go")
+    {
+        std::cout << "Go where: " << std::endl;
+        for (size_t i = 0; i < wailingMarsh.exits.size(); i++)
+        {
+            std::cout << i << ": " << wailingMarsh.exits[i] << std::endl;
+        }
+        std::cin >> userIntInput;
+        cayde.Go(wailingMarsh.exits[userIntInput]);
+
+    }
 }
