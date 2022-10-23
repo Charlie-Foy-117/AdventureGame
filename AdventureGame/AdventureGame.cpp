@@ -143,7 +143,7 @@ int main()
         std::cout << "What would you like to do: " << std::endl
             << "   look" << std::endl
             << "   quit" << std::endl;
-
+        
         std::cin >> userStringInput;
 
         if (userStringInput == "quit")
@@ -152,6 +152,8 @@ int main()
         }
         if (userStringInput == "look")
         {
+            system("cls");
+
             std::cout << "Look where?" << std::endl
                 << "    here" << std::endl
                 << "    quit" << std::endl;
@@ -164,6 +166,8 @@ int main()
             }
             if (userStringInput == "here")
             {
+                system("cls");
+
                 currentArea.Look();
 
                 std::cout << "What would you like to do: " << std::endl
@@ -177,6 +181,8 @@ int main()
                 }
                 if (userStringInput == "go")
                 {
+                    system("cls");
+
                     std::cout << "Go where: " << std::endl;
                     for (size_t i = 0; i < currentArea.exits.size(); i++)
                     {
@@ -187,6 +193,8 @@ int main()
                     
                     if (areaMap.find(userStringInput) != areaMap.end())
                     {
+                        system("cls");
+
                         currentArea = areaMap[userStringInput]; 
                         std::cout << currentArea.name << std::endl;
                     } 
