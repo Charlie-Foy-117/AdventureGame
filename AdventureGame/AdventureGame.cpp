@@ -8,6 +8,8 @@
 #include "Item.h"
 #include "Area.h"
 
+#include <map>
+
 int main()
 {
     
@@ -66,23 +68,33 @@ int main()
 
     //area classes
     Area wailingMarsh;
-    wailingMarsh.name = "Wailing Marsh";
+    wailingMarsh.name = "Wailing_Marsh";
     wailingMarsh.description = "Wailing Marsh: The corrupted lands that speaks";
     wailingMarsh.contents = {"Swamp Dweller", "Health Potion", "Swords"};
-    wailingMarsh.exits = { "Northern passge way - To Clouded City", "Drowned gateway - To Fallen Fortress" };
+    wailingMarsh.exits = { "Clouded_City", "Fallen_Fortress" };
 
     Area fallenFortress;
-    fallenFortress.name = "Fallen Fortress";
+    fallenFortress.name = "Fallen_Fortress";
     fallenFortress.description = "Fallen Fortress: The last memory of what once was";
     fallenFortress.contents = {"Strength Potion", "Rust-EE", "Key"};
-    fallenFortress.exits = { "Eastern pathway - To Wailing Marsh", "The pit - To Clouded City" };
+    fallenFortress.exits = { "Wailing_Marsh", "Clouded_City" };
 
     Area cloudedCity;
-    cloudedCity.name = "Clouded City";
+    cloudedCity.name = "Clouded_City";
     cloudedCity.description = "Clouded City: The city above all";
     cloudedCity.contents = {"Lever", "Allfather", "Lock"};
-    cloudedCity.exits = { "Stairway up - To Fallen Fortress", "The cloud bridge - To Wailing Marsh" };
+    cloudedCity.exits = { "Fallen_Fortress", "Wailing_Marsh" };
 
+    Area currentArea;
+    currentArea.name = "";
+    currentArea.description = "";
+    currentArea.contents = {};
+    currentArea.exits = {};
+
+    std::map<std::string, Area> areaMap;
+    areaMap[wailingMarsh.name] = wailingMarsh;
+    areaMap[fallenFortress.name] = fallenFortress;
+    areaMap[cloudedCity.name] = cloudedCity;
     
     //feature
     Feature lock;
@@ -121,48 +133,66 @@ int main()
     //lock.PrintFeature();
     //healthPot.PrintItem();
     
+    currentArea = wailingMarsh;
     std::string userStringInput;
     int userIntInput = 0;
-    
-    std::cout << "You awake in the wailing marsh" << std::endl
-        << "What would you like to do: " << std::endl
-        << "   look" << std::endl
-        << "   help" << std::endl;
+    bool quitGame = false;
+    std::cout << "You awake in the " << currentArea.name << std::endl;
+    do
+    { 
+        std::cout << "What would you like to do: " << std::endl
+            << "   look" << std::endl
+            << "   quit" << std::endl;
 
-    
-    std::cin >> userStringInput;
-    if (userStringInput == "look")
-    {
-        std::cout << "Look where?" << std::endl
-            << "    here" << std::endl
-            << "    monster" << std::endl;
-    }
-    std::cin >> userStringInput;
-    
-  
-    if (userStringInput == "here")
-    {
-        wailingMarsh.Look();
-    }
-    if (userStringInput == "monster")
-    {
-        swampDweller.PrintMonster();
-    }
-    std::cout << "What would you like to do: " << std::endl
-        << "   go" << std::endl
-        << "   look" << std::endl
-        << "   help" << std::endl;
-    std::cin >> userStringInput;
+        std::cin >> userStringInput;
 
-    if (userStringInput == "go")
-    {
-        std::cout << "Go where: " << std::endl;
-        for (size_t i = 0; i < wailingMarsh.exits.size(); i++)
+        if (userStringInput == "quit")
         {
-            std::cout << i << ": " << wailingMarsh.exits[i] << std::endl;
+            quitGame = true;
         }
-        std::cin >> userIntInput;
-        cayde.Go(wailingMarsh.exits[userIntInput]);
+        if (userStringInput == "look")
+        {
+            std::cout << "Look where?" << std::endl
+                << "    here" << std::endl
+                << "    quit" << std::endl;
 
-    }
+            std::cin >> userStringInput;
+
+            if (userStringInput == "quit")
+            {
+                quitGame = true;
+            }
+            if (userStringInput == "here")
+            {
+                currentArea.Look();
+
+                std::cout << "What would you like to do: " << std::endl
+                    << "   go" << std::endl
+                    << "   quit" << std::endl;
+
+                std::cin >> userStringInput;
+                if (userStringInput == "quit")
+                {
+                    quitGame = true;
+                }
+                if (userStringInput == "go")
+                {
+                    std::cout << "Go where: " << std::endl;
+                    for (size_t i = 0; i < currentArea.exits.size(); i++)
+                    {
+                        std::cout << currentArea.exits[i] << std::endl;
+                    }
+                    
+                    std::cin >> userStringInput;
+                    
+                    if (areaMap.find(userStringInput) != areaMap.end())
+                    {
+                        currentArea = areaMap[userStringInput]; 
+                        std::cout << currentArea.name << std::endl;
+                    } 
+                }
+            }
+        }
+        
+    } while (quitGame == false);
 }
