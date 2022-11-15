@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Area.h"
 #include <iostream>
 
 Player::Player()
@@ -8,12 +9,12 @@ Player::Player()
     , attack(0)
     , weapon(" ")
     , armour(" ")
-    , currentArea(" ")
+    , currentArea(nullptr)
 {
     std::cout << "Player Constructed" << std::endl;
 }
 
-Player::Player(std::string newName, std::string newDescription, int newHealth, int newAttack, std::string newWeapon, std::string newArmour, std::string newCurrentArea)
+Player::Player(std::string newName, std::string newDescription, int newHealth, int newAttack, std::string newWeapon, std::string newArmour, Area* newCurrentArea)
     :name(newName)
     ,description(newDescription)
     ,health(newHealth)
@@ -46,10 +47,4 @@ void Player::PrintPlayer()
         std::cout << inventory[i] << std::endl;
     }
     std::cout << " " << std::endl;
-}
-
-void Player::Go(std::string newCurrentArea)
-{
-    currentArea = newCurrentArea;
-    std::cout << "Chosen Pathway: " << newCurrentArea << std::endl;
 }

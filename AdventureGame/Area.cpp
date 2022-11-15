@@ -1,4 +1,5 @@
 #include "Area.h"
+#include "Player.h"
 #include <iostream>
 
 
@@ -11,7 +12,7 @@ Area::Area()
     std::cout << "Area Constructed" << std::endl;
 }
 
-Area::Area(std::string newName, std::string newDescription, std::vector<std::string> newContents, std::vector<std::string> newExits)
+Area::Area(std::string newName, std::string newDescription, std::vector<std::string> newContents, std::vector<Area*> newExits)
     :name(newName)
     ,description(newDescription)
     ,contents(newContents)
@@ -57,7 +58,26 @@ void Area::Look()
 	std::cout << "Pathways: " << std::endl;
 	for (size_t i = 0; i < exits.size(); ++i)
 	{
-		std::cout << exits[i] << std::endl;
+		std::cout << exits[i]->name << std::endl;
 	}
     std::cout << " " << std::endl;
+}
+
+void Area::Go(Player* newCurrentArea, std::string target)
+{
+    bool answer = false;
+    for (size_t i = 0; i < newCurrentArea->currentArea->exits.size(); i++)
+    {
+        if (newCurrentArea->currentArea->exits[i]->name == target)
+        {
+            newCurrentArea->currentArea = newCurrentArea->currentArea->exits[i];
+            std::cout << "You are now in the " << newCurrentArea->currentArea->name << std::endl;
+            answer = true;
+        }
+        
+    }
+    if (answer == false)
+    {
+        std::cout << "Invalid Choice, Try again" << std::endl;
+    }
 }
