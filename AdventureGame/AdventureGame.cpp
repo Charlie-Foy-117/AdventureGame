@@ -95,6 +95,7 @@ int main()
     areaMap[wailingMarsh.name] = wailingMarsh;
     areaMap[fallenFortress.name] = fallenFortress;
     areaMap[cloudedCity.name] = cloudedCity;
+
     
     //feature
     Feature lock;
