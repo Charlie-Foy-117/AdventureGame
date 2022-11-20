@@ -12,17 +12,10 @@
 
 int main()
 {
-    
+
     //player classes
-    Player cayde;
-    cayde.name = "Cayde";
-    cayde.description = "Gunslinger";
-    cayde.health = 90;
-    cayde.attack = 25;
-    cayde.weapon = "Flaming pistol";
-    cayde.armour = "Cowboy set";
-    cayde.inventory = { "Bullets", cayde.weapon, cayde.armour + " armour" };
-    
+    Player cayde("Cayde", "Gunslinger", 90, 25, nullptr);
+
 
     //monster classes
     /*
@@ -48,34 +41,21 @@ int main()
 
     //area classes
 
-    Area wailingMarsh;
-    wailingMarsh.name = "Wailing_Marsh";
-    wailingMarsh.description = "Wailing Marsh: The corrupted lands that speaks";
-    wailingMarsh.contents = {"Swamp Dweller", "Health Potion", "Swords"};
+    Area wailingMarsh("Wailing_Marsh", "Wailing Marsh: The corrupted lands that speaks", {});
 
-    Area fallenFortress;
-    fallenFortress.name = "Fallen_Fortress";
-    fallenFortress.description = "Fallen Fortress: The last memory of what once was";
-    fallenFortress.contents = {"Strength Potion", "Rust-EE", "Key"};
+    Area fallenFortress("Fallen_Fortress", "Fallen Fortress: The last memory of what once was", {});
 
-    Area cloudedCity;
-    cloudedCity.name = "Clouded_City";
-    cloudedCity.description = "Clouded City: The city above all";
-    cloudedCity.contents = {"Lever", "Allfather", "Lock"};
+    Area cloudedCity("Clouded_City", "Clouded City: The city above all", {});
 
-    wailingMarsh.exits.push_back(&fallenFortress);
-    wailingMarsh.exits.push_back(&cloudedCity);
+    wailingMarsh.AddExit(&fallenFortress);
+    wailingMarsh.AddExit(&cloudedCity);
 
-    fallenFortress.exits.push_back(&wailingMarsh);
-    fallenFortress.exits.push_back(&cloudedCity);
+    fallenFortress.AddExit(&wailingMarsh);
+    fallenFortress.AddExit(&cloudedCity);
 
-    cloudedCity.exits.push_back(&wailingMarsh);
-    cloudedCity.exits.push_back(&fallenFortress);
+    cloudedCity.AddExit(&wailingMarsh);
+    cloudedCity.AddExit(&fallenFortress);
 
-    std::map<std::string, Area> areaMap;
-    areaMap[wailingMarsh.name] = wailingMarsh;
-    areaMap[fallenFortress.name] = fallenFortress;
-    areaMap[cloudedCity.name] = cloudedCity;
 
     
     //feature
@@ -110,11 +90,11 @@ int main()
     */
     
     
-    cayde.currentArea = &wailingMarsh;
+    cayde.SetCurrentArea(&wailingMarsh);
     std::string userStringInput;
     int userIntInput = 0;
     bool quitGame = false;
-    std::cout << "You awake in the " << cayde.currentArea->name << std::endl;
+    std::cout << "You awake in the " << cayde.GetCurrentArea()->GetName() << std::endl;
     do
     { 
         std::cout << "What would you like to do: " << std::endl
@@ -145,7 +125,7 @@ int main()
             {
                 system("cls");
 
-                cayde.currentArea->Look();
+                cayde.GetCurrentArea()->Look();
 
                 std::cout << "What would you like to do: " << std::endl
                     << "   go" << std::endl
@@ -161,15 +141,15 @@ int main()
                     system("cls");
 
                     std::cout << "Go where: " << std::endl;
-                    for (size_t i = 0; i < cayde.currentArea->exits.size(); i++)
+                    for (size_t i = 0; i < cayde.GetCurrentArea()->GetExits().size(); i++)
                     {
-                        std::cout << cayde.currentArea->exits[i]->name << std::endl;
+                        std::cout << cayde.GetCurrentArea()->GetExits()[i]->GetName() << std::endl;
                     }
                     
                     std::cin >> userStringInput;
                     
                     system("cls");
-                    cayde.currentArea->Go(&cayde, userStringInput);
+                    cayde.GetCurrentArea()->Go(&cayde, userStringInput);
                       
                 }
             }
