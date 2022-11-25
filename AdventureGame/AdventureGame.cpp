@@ -14,38 +14,23 @@ int main()
 {
 
     //player classes
-    Player cayde("Cayde", "Gunslinger", 90, 25, nullptr);
+    Player cayde("Cayde", "Gunslinger", 20, 10, nullptr);
 
 
     //monster classes
-    /*
-    Monster swampDweller;
-    swampDweller.name = "Swamp Dweller";
-    swampDweller.description = "Slimy ball of squeakling moss";
-    swampDweller.health = 5;
-    swampDweller.attack = 1;
+    Monster swampDweller("Swamp Dweller", "Slimy ball of squeakling moss", 20, 15);
 
-    Monster rustee;
-    rustee.name = "Rust-EE";
-    rustee.description = "A relic of a better age";
-    rustee.health = 30;
-    rustee.attack = 10;
+    Monster runedGolem("Runed Golem", "An ancient relic of a twisted people", 8, 25);
 
-    Monster allfather;
-    allfather.name = "The Allfather of the Distant Shores";
-    allfather.description = "King of the old kind, Conqueuer of the new";
-    allfather.health = 500;
-    allfather.attack = 40;
-    */
-
+    Monster demonGhost("Demon Ghost", "A gaseous cloud of pure evil", 10, 5);
 
     //area classes
 
-    Area wailingMarsh("Wailing_Marsh", "Wailing Marsh: The corrupted lands that speaks", {});
+    Area wailingMarsh("Wailing_Marsh", "Wailing Marsh: The corrupted lands that speaks", {}, {});
 
-    Area fallenFortress("Fallen_Fortress", "Fallen Fortress: The last memory of what once was", {});
+    Area fallenFortress("Fallen_Fortress", "Fallen Fortress: The last memory of what once was", {}, {});
 
-    Area cloudedCity("Clouded_City", "Clouded City: The city above all", {});
+    Area cloudedCity("Clouded_City", "Clouded City: The city above all", {}, {});
 
     wailingMarsh.AddExit(&fallenFortress);
     wailingMarsh.AddExit(&cloudedCity);
@@ -55,7 +40,6 @@ int main()
 
     cloudedCity.AddExit(&wailingMarsh);
     cloudedCity.AddExit(&fallenFortress);
-
 
     
     //feature
@@ -99,6 +83,8 @@ int main()
     { 
         std::cout << "What would you like to do: " << std::endl
             << "   look" << std::endl
+            << "   attack" << std::endl
+            << "   go" << std::endl
             << "   quit" << std::endl;
         
         std::cin >> userStringInput;
@@ -107,53 +93,92 @@ int main()
         {
             quitGame = true;
         }
-        if (userStringInput == "look")
+        else if (userStringInput == "look")
         {
             system("cls");
 
             std::cout << "Look where?" << std::endl
+                << "    self" << std::endl
                 << "    here" << std::endl
                 << "    quit" << std::endl;
 
             std::cin >> userStringInput;
-
-            if (userStringInput == "quit")
+            if (userStringInput == "self")
             {
-                quitGame = true;
+                system("cls");
+
+                cayde.LookAtSelf();
             }
             if (userStringInput == "here")
             {
                 system("cls");
 
                 cayde.GetCurrentArea()->Look();
+            }
 
-                std::cout << "What would you like to do: " << std::endl
-                    << "   go" << std::endl
-                    << "   quit" << std::endl;
+        }
+        else if (userStringInput == "attack")
+        {
+            system("cls");
 
-                std::cin >> userStringInput;
-                if (userStringInput == "quit")
+            std::cout << "What would you like to attack" << std::endl
+                << "    monster" << std::endl;
+
+            std::cin >> userStringInput;
+
+            if (userStringInput == "monster")
+            {
+                system("cls");
+                cayde.LookAtSelf();
+                if (cayde.GetCurrentArea()->GetName() == wailingMarsh.GetName())
                 {
-                    quitGame = true;
+                    swampDweller.LookAtMonster();
                 }
-                if (userStringInput == "go")
+
+                if (cayde.GetCurrentArea()->GetName() == fallenFortress.GetName())
+                {
+                    runedGolem.LookAtMonster();
+                }
+
+                if (cayde.GetCurrentArea()->GetName() == cloudedCity.GetName())
+                {
+                    demonGhost.LookAtMonster();
+                }
+                std::cout << "Do you still wish to attack" << std::endl
+                    << "    yes" << std::endl
+                    << "    no" << std::endl;
+                std::cin >> userStringInput;
+                if (userStringInput == "yes")
                 {
                     system("cls");
-
-                    std::cout << "Go where: " << std::endl;
-                    for (size_t i = 0; i < cayde.GetCurrentArea()->GetExits().size(); i++)
+                    swampDweller.DealDamage(&cayde);
+                    if (!cayde.GetAlive())
                     {
-                        std::cout << cayde.GetCurrentArea()->GetExits()[i]->GetName() << std::endl;
+                        std::cout << "You died" << std::endl;
+                        quitGame = true;
                     }
-                    
-                    std::cin >> userStringInput;
-                    
+                }
+                else if (userStringInput == "no")
+                {
                     system("cls");
-                    cayde.GetCurrentArea()->Go(&cayde, userStringInput);
-                      
                 }
             }
         }
+        else if (userStringInput == "go")
+        {
+
+            std::cout << "Go where: " << std::endl;
+            for (size_t i = 0; i < cayde.GetCurrentArea()->GetExits().size(); i++)
+            {
+                std::cout << cayde.GetCurrentArea()->GetExits()[i]->GetName() << std::endl;
+            }
+                    
+            std::cin >> userStringInput;
+
+            system("cls");
+            cayde.GetCurrentArea()->Go(&cayde, userStringInput);
+                      
+        } 
         
     } while (quitGame == false);
 }

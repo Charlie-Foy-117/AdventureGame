@@ -12,11 +12,15 @@ public:
 	~Player();
 
 	//functions/methods
-	void PrintPlayer();
+	void LookAtSelf();
+	void TakeDamage(int takenDamage);
 
 	//getters
 	std::string GetName();
 	Area* GetCurrentArea();
+	int GetAttack();
+	bool GetAlive();
+	int GetHealth();
 
 	//setters
 	void SetCurrentArea(Area* newCurrentArea);

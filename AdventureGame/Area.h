@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+class Monster;
 class Player;
 
 class Area

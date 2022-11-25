@@ -27,14 +27,21 @@ Player::~Player()
     std::cout << "Player Destoryed" << std::endl;
 }
 
-void Player::PrintPlayer()
+void Player::LookAtSelf()
 {
     std::cout << "Name: " << name << std::endl
         << "Description: " << description << std::endl
         << "Health: " << health << std::endl
         << "Attack: " << attack << std::endl
-        << "Current Area: " << currentArea << std::endl
+        << "Current Area: " << currentArea->GetName() << std::endl
         << " " << std::endl;
+}
+
+void Player::TakeDamage(int takenDamage)
+{
+    health -= takenDamage;
+    std::cout << " " << std::endl
+        << "Player's health is now " << health << std::endl;
 }
 
 std::string Player::GetName()
@@ -45,6 +52,21 @@ std::string Player::GetName()
 Area* Player::GetCurrentArea()
 {
     return currentArea;
+}
+
+int Player::GetAttack()
+{
+    return attack;
+}
+
+bool Player::GetAlive()
+{
+    return health > 0;
+}
+
+int Player::GetHealth()
+{
+    return health;
 }
 
 void Player::SetCurrentArea(Area* newCurrentArea)
