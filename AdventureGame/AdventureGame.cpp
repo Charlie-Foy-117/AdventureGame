@@ -26,11 +26,11 @@ int main()
 
     //area classes
 
-    Area wailingMarsh("Wailing_Marsh", "Wailing Marsh: The corrupted lands that speaks", {}, {});
+    Area wailingMarsh("Wailing_Marsh", "Wailing Marsh: The corrupted lands that speaks", {});
 
-    Area fallenFortress("Fallen_Fortress", "Fallen Fortress: The last memory of what once was", {}, {});
+    Area fallenFortress("Fallen_Fortress", "Fallen Fortress: The last memory of what once was", {});
 
-    Area cloudedCity("Clouded_City", "Clouded City: The city above all", {}, {});
+    Area cloudedCity("Clouded_City", "Clouded City: The city above all", {});
 
     wailingMarsh.AddExit(&fallenFortress);
     wailingMarsh.AddExit(&cloudedCity);

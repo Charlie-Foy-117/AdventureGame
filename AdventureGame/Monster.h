@@ -1,8 +1,10 @@
 #pragma once
 #include <string>
+#include "Creature.h"
+
 class Player;
 
-class Monster
+class Monster : public Creature
 {
 public:
 
@@ -23,9 +25,5 @@ public:
 
 private:
 	//variables
-	std::string name;
-	std::string description;
-	int attack;
-	int health;
 };
 

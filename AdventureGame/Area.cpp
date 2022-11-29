@@ -4,7 +4,8 @@
 
 
 Area::Area()
-    :name(" ")
+    :Thing()
+    ,name(" ")
     , description(" ")
     , exits()
 {
@@ -12,7 +13,8 @@ Area::Area()
 }
 
 Area::Area(std::string newName, std::string newDescription, std::vector<Area*> newExits)
-    :name(newName)
+    :Thing()
+    ,name(newName)
     ,description(newDescription)
     ,exits(newExits)
 {
@@ -37,7 +39,7 @@ void Area::PrintArea()
     std::cout << " " << std::endl;
 }
 
-void Area::Look()
+/*void Area::Look()
 {
 	std::cout << description << std::endl
         << " " << std::endl
@@ -49,7 +51,7 @@ void Area::Look()
 		std::cout << exits[i]->name << std::endl;
 	}
     std::cout << " " << std::endl;
-}
+}*/
 
 void Area::Go(Player* newCurrentArea, std::string target)
 {

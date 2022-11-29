@@ -3,19 +3,13 @@
 #include <iostream>
 
 Monster::Monster()
-    :name("")
-    ,description("")
-    ,attack(0)
-    ,health(0)
+    :Creature()
 {
     std::cout << "Monster Constructed" << std::endl;
 }
 
 Monster::Monster(std::string newName, std::string newDescription, int newAttack, int newHealth)
-    :name(newName)
-    ,description(newDescription)
-    ,attack(newAttack)
-    ,health(newHealth)
+    :Creature()
 {
     std::cout << "Monster Constructed with Parameters" << std::endl;
 }

@@ -1,10 +1,11 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "Thing.h"
 class Monster;
 class Player;
 
-class Area
+class Area : public Thing
 {
 public:
 	//constructors
@@ -15,7 +16,7 @@ public:
 
 	//functions/methods
 	void PrintArea();
-	void Look();
+	//void Look();
 	void Go(Player* currentArea, std::string target);
 	void AddExit(Area* newExit);
 

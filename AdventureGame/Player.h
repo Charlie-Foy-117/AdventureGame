@@ -1,9 +1,10 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "Creature.h"
 class Area;
 
-class Player
+class Player : public Creature
 {
 public:
 	//constructors
@@ -18,9 +19,7 @@ public:
 	//getters
 	std::string GetName();
 	Area* GetCurrentArea();
-	int GetAttack();
 	bool GetAlive();
-	int GetHealth();
 
 	//setters
 	void SetCurrentArea(Area* newCurrentArea);
@@ -28,10 +27,6 @@ public:
 private:
 
 	//variables
-	std::string name;
-	std::string description;
-	int health = 0;
-	int attack = 0;
 	Area* currentArea;
 };
 

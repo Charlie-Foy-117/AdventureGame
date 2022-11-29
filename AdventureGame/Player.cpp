@@ -3,20 +3,14 @@
 #include <iostream>
 
 Player::Player()
-    :name(" ")
-    , description(" ")
-    , health(0)
-    , attack(0)
-    , currentArea(nullptr)
+    :Creature()
+    ,currentArea(nullptr)
 {
     std::cout << "Player Constructed" << std::endl;
 }
 
 Player::Player(std::string newName, std::string newDescription, int newHealth, int newAttack, Area* newCurrentArea)
-    :name(newName)
-    ,description(newDescription)
-    ,health(newHealth)
-    ,attack(newAttack)
+    :Creature()
     ,currentArea(newCurrentArea)
 {
     std::cout << "Player Constructed with Parameters" << std::endl;
@@ -54,19 +48,9 @@ Area* Player::GetCurrentArea()
     return currentArea;
 }
 
-int Player::GetAttack()
-{
-    return attack;
-}
-
 bool Player::GetAlive()
 {
     return health > 0;
-}
-
-int Player::GetHealth()
-{
-    return health;
 }
 
 void Player::SetCurrentArea(Area* newCurrentArea)
