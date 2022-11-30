@@ -5,17 +5,13 @@
 
 Area::Area()
     :Thing()
-    ,name(" ")
-    , description(" ")
     , exits()
 {
     std::cout << "Area Constructed" << std::endl;
 }
 
 Area::Area(std::string newName, std::string newDescription, std::vector<Area*> newExits)
-    :Thing()
-    ,name(newName)
-    ,description(newDescription)
+    :Thing(newName, newDescription)
     ,exits(newExits)
 {
     std::cout << "Area Constructed with Parameters" << std::endl;
@@ -39,19 +35,17 @@ void Area::PrintArea()
     std::cout << " " << std::endl;
 }
 
-/*void Area::Look()
+void Area::Look()
 {
-	std::cout << description << std::endl
-        << " " << std::endl
-        << "Contents: " << std::endl;
-    std::cout << " " << std::endl;
-	std::cout << "Pathways: " << std::endl;
+    Thing::Look();
+	std::cout << " " << std::endl
+	    << "Pathways: " << std::endl;
 	for (size_t i = 0; i < exits.size(); ++i)
 	{
 		std::cout << exits[i]->name << std::endl;
 	}
     std::cout << " " << std::endl;
-}*/
+}
 
 void Area::Go(Player* newCurrentArea, std::string target)
 {
@@ -75,11 +69,6 @@ void Area::Go(Player* newCurrentArea, std::string target)
 void Area::AddExit(Area* newExit)
 {
     exits.push_back(newExit);
-}
-
-std::string Area::GetName()
-{
-    return name;
 }
 
 std::vector<Area*> Area::GetExits()

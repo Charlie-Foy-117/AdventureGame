@@ -6,19 +6,19 @@ Player::Player()
     :Creature()
     ,currentArea(nullptr)
 {
-    std::cout << "Player Constructed" << std::endl;
+    std::cout << "Player: " << name << " was created" << std::endl;
 }
 
 Player::Player(std::string newName, std::string newDescription, int newHealth, int newAttack, Area* newCurrentArea)
-    :Creature()
+    :Creature(newName, newDescription, newHealth, newAttack)
     ,currentArea(newCurrentArea)
 {
-    std::cout << "Player Constructed with Parameters" << std::endl;
+    std::cout << "Player: " << name <<" was created using parameters" << std::endl;
 }
 
 Player::~Player()
 {
-    std::cout << "Player Destoryed" << std::endl;
+    std::cout << "Player: " << name << " was destoryed" << std::endl;
 }
 
 void Player::LookAtSelf()
@@ -36,11 +36,6 @@ void Player::TakeDamage(int takenDamage)
     health -= takenDamage;
     std::cout << " " << std::endl
         << "Player's health is now " << health << std::endl;
-}
-
-std::string Player::GetName()
-{
-    return name;
 }
 
 Area* Player::GetCurrentArea()

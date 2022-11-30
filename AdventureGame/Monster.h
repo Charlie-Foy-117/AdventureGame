@@ -20,7 +20,6 @@ public:
 	void LookAtMonster();
 
 	//getter
-	std::string GetName();
 	bool GetAlive();
 
 private:

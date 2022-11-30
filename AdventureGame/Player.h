@@ -17,7 +17,6 @@ public:
 	void TakeDamage(int takenDamage);
 
 	//getters
-	std::string GetName();
 	Area* GetCurrentArea();
 	bool GetAlive();
 

@@ -9,7 +9,7 @@ Monster::Monster()
 }
 
 Monster::Monster(std::string newName, std::string newDescription, int newAttack, int newHealth)
-    :Creature()
+    :Creature(newName, newDescription, newHealth, newAttack)
 {
     std::cout << "Monster Constructed with Parameters" << std::endl;
 }
@@ -71,11 +71,6 @@ void Monster::LookAtMonster()
         std::cout << "The monsters health is: " << health << std::endl
             << "The monsters damage is: " << attack << std::endl;
     }
-}
-
-std::string Monster::GetName()
-{
-    return name;
 }
 
 bool Monster::GetAlive()
