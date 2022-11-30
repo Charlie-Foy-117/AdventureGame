@@ -31,13 +31,6 @@ void Player::LookAtSelf()
         << " " << std::endl;
 }
 
-void Player::TakeDamage(int takenDamage)
-{
-    health -= takenDamage;
-    std::cout << " " << std::endl
-        << "Player's health is now " << health << std::endl;
-}
-
 Area* Player::GetCurrentArea()
 {
     return currentArea;

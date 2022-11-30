@@ -28,6 +28,13 @@ void Creature::Look()
 		<< "Attack: " << attack << std::endl;
 }
 
+void Creature::TakeDamage(int takenDamage)
+{
+	health -= takenDamage;
+	std::cout << " " << std::endl
+		<< name	<< " health is now " << health << std::endl;
+}
+
 int Creature::GetAttack()
 {
 	return attack;

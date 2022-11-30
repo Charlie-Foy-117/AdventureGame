@@ -14,7 +14,6 @@ public:
 
 	//functions/methods
 	void LookAtSelf();
-	void TakeDamage(int takenDamage);
 
 	//getters
 	Area* GetCurrentArea();

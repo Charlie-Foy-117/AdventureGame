@@ -15,7 +15,6 @@ public:
 
 	//functions
 	void PrintMonster();
-	void TakeDamage(int takenDamage);
 	void DealDamage(Player* myPlayer);
 	void LookAtMonster();
 

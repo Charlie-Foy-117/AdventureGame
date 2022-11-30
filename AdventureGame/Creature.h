@@ -9,6 +9,7 @@ public:
 	~Creature();
 
 	void Look();
+	void TakeDamage(int takenDamage);
 
 	int GetAttack();
 	int GetHealth();

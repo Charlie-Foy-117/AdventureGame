@@ -28,11 +28,6 @@ void Monster::PrintMonster()
         << " " << std::endl;
 }
 
-void Monster::TakeDamage(int takenDamage)
-{
-    health -= takenDamage;
-}
-
 void Monster::DealDamage(Player* myPlayer)
 {
     if (health <= 0)
