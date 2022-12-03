@@ -10,7 +10,7 @@ class Area : public Thing
 public:
 	//constructors
 	Area();
-	Area(std::string newName, std::string newDescription, std::vector<Area*> newExits);
+	Area(std::string newName, std::string newDescription, std::vector<Area*> newExits, Monster* newMonster);
 	~Area();
 
 
@@ -20,11 +20,16 @@ public:
 	void Go(Player* currentArea, std::string target);
 	void AddExit(Area* newExit);
 
+	//setters
+	void SetMonster(Monster* newMonster);
+
 	//getters
 	std::vector<Area*> GetExits();
+	Monster* GetMonster();
 
 private:
 	//variables
 	std::vector<Area*> exits;
+	Monster* monster;
 };
 
