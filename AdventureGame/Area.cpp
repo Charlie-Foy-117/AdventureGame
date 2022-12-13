@@ -5,14 +5,16 @@
 
 Area::Area()
     :Thing()
-    , exits()
+    ,exits()
+    ,monster(nullptr)
 {
     std::cout << "Area: " << name << " was created" << std::endl;
 }
 
-Area::Area(std::string newName, std::string newDescription, std::vector<Area*> newExits)
+Area::Area(std::string newName, std::string newDescription, std::vector<Area*> newExits, Monster* newMonster)
     :Thing(newName, newDescription)
     ,exits(newExits)
+    ,monster(newMonster)
 {
     std::cout << "Area: " << name << " was created using parameters" << std::endl;
 }
@@ -71,7 +73,17 @@ void Area::AddExit(Area* newExit)
     exits.push_back(newExit);
 }
 
+void Area::SetMonster(Monster* newMonster)
+{
+    monster = newMonster;
+}
+
 std::vector<Area*> Area::GetExits()
 {
     return exits;
+}
+
+Monster* Area::GetMonster()
+{
+    return monster;
 }
