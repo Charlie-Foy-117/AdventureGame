@@ -1,0 +1,19 @@
+#pragma once
+#include "Item.h"
+class Player;
+
+class Potion : public Item
+{
+public:
+
+	Potion();
+	Potion(std::string newName, std::string newDescription, int newHeal);
+	~Potion();
+
+	void UsePotion(Player* effectPlayer);
+
+private:
+
+	int heal;
+};
+

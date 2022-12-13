@@ -14,6 +14,8 @@ public:
 	int GetAttack();
 	int GetHealth();
 
+	void PotionEffectOnHealth(int changeInHealth);
+
 protected:
 
 	int health;

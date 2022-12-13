@@ -5,8 +5,8 @@
 #include "Player.h"
 #include "Monster.h"
 #include "Feature.h"
-#include "Item.h"
 #include "Area.h"
+#include "Potion.h"
 
 #include <map>
 
@@ -41,7 +41,9 @@ int main()
     cloudedCity.AddExit(&wailingMarsh);
     cloudedCity.AddExit(&fallenFortress);
 
-    
+    //Items
+    Potion healthPotion("SmallHealthPotion", "This potion heals you for a small amount of health", 5);
+
     //feature
     /*
     Feature lock;
@@ -57,21 +59,6 @@ int main()
     lever.description = "When pulled boss fight starts";
     */
 
-
-    //item
-    /*
-    Item healthPot;
-    healthPot.name = "Potion of restoration";
-    healthPot.description = "Will heal player for 20 health points";
-
-    Item strenPot;
-    strenPot.name = "Potion of strength";
-    strenPot.description = "Will make next attack done by player deal an addtional 20 points";
-
-    Item key;
-    key.name = "Key";
-    key.description = "Unlocks lock";
-    */
     
     
     cayde.SetCurrentArea(&wailingMarsh);
@@ -84,6 +71,7 @@ int main()
         std::cout << "What would you like to do: " << std::endl
             << "   look" << std::endl
             << "   attack" << std::endl
+            << "   use" << std::endl
             << "   go" << std::endl
             << "   quit" << std::endl;
         
@@ -163,6 +151,10 @@ int main()
                     system("cls");
                 }
             }
+        }
+        else if (userStringInput == "use")
+        {
+            std::cout << "Use what" << std::endl;
         }
         else if (userStringInput == "go")
         {

@@ -7,19 +7,19 @@ Area::Area()
     :Thing()
     , exits()
 {
-    std::cout << "Area Constructed" << std::endl;
+    std::cout << "Area: " << name << " was created" << std::endl;
 }
 
 Area::Area(std::string newName, std::string newDescription, std::vector<Area*> newExits)
     :Thing(newName, newDescription)
     ,exits(newExits)
 {
-    std::cout << "Area Constructed with Parameters" << std::endl;
+    std::cout << "Area: " << name << " was created using parameters" << std::endl;
 }
 
 Area::~Area()
 {
-    std::cout << "Area Destoryed" << std::endl;
+    std::cout << "Area: " << name << " was destroyed" << std::endl;
 }
 
 void Area::PrintArea()

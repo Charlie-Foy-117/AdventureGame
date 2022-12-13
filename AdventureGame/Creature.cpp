@@ -44,3 +44,8 @@ int Creature::GetHealth()
 {
 	return health;
 }
+
+void Creature::PotionEffectOnHealth(int changeInHealth)
+{
+	health += changeInHealth;
+}

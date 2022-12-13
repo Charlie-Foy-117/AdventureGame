@@ -18,7 +18,7 @@ Player::Player(std::string newName, std::string newDescription, int newHealth, i
 
 Player::~Player()
 {
-    std::cout << "Player: " << name << " was destoryed" << std::endl;
+    std::cout << "Player: " << name << " was destroyed" << std::endl;
 }
 
 void Player::LookAtSelf()

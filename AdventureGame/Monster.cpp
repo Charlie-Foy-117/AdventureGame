@@ -5,18 +5,18 @@
 Monster::Monster()
     :Creature()
 {
-    std::cout << "Monster Constructed" << std::endl;
+    std::cout << "Monster: " << name << " was created" << std::endl;
 }
 
 Monster::Monster(std::string newName, std::string newDescription, int newAttack, int newHealth)
     :Creature(newName, newDescription, newHealth, newAttack)
 {
-    std::cout << "Monster Constructed with Parameters" << std::endl;
+    std::cout << "Monster: " << name << " was created using parameters" << std::endl;
 }
 
 Monster::~Monster()
 {
-    std::cout << "Monster Destroyed" << std::endl;
+    std::cout << "Monster: " << name << " was destroyed" << std::endl;
 }
 
 void Monster::PrintMonster()

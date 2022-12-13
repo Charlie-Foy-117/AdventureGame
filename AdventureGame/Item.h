@@ -1,16 +1,13 @@
 #pragma once
 #include <string>
-class Item
+#include "Thing.h"
+
+class Item : public Thing
 {
 public:
 
-	//constructors
-
-	//functions/methods
-	void PrintItem();
-
-	//variables
-	std::string name;
-	std::string description;
+	Item();
+	Item(std::string newName, std::string newDescription);
+	~Item();
 };
 

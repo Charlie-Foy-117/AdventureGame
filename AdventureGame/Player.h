@@ -26,5 +26,6 @@ private:
 
 	//variables
 	Area* currentArea;
+	//std::vector<Item*, std::string> inventory;
 };
 
