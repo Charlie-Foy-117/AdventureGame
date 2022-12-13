@@ -26,11 +26,11 @@ int main()
 
     //area classes
 
-    Area wailingMarsh("Wailing_Marsh", "Wailing Marsh: The corrupted lands that speaks", {});
+    Area wailingMarsh("Wailing_Marsh", "Wailing Marsh: The corrupted lands that speaks", {}, nullptr);
 
-    Area fallenFortress("Fallen_Fortress", "Fallen Fortress: The last memory of what once was", {});
+    Area fallenFortress("Fallen_Fortress", "Fallen Fortress: The last memory of what once was", {}, nullptr);
 
-    Area cloudedCity("Clouded_City", "Clouded City: The city above all", {});
+    Area cloudedCity("Clouded_City", "Clouded City: The city above all", {}, nullptr);
 
     wailingMarsh.AddExit(&fallenFortress);
     wailingMarsh.AddExit(&cloudedCity);
@@ -40,6 +40,12 @@ int main()
 
     cloudedCity.AddExit(&wailingMarsh);
     cloudedCity.AddExit(&fallenFortress);
+
+    wailingMarsh.SetMonster(&swampDweller);
+
+    fallenFortress.SetMonster(&runedGolem);
+
+    cloudedCity.SetMonster(&demonGhost);
 
     //Items
     Potion healthPotion("SmallHealthPotion", "This potion heals you for a small amount of health", 5);
@@ -118,20 +124,7 @@ int main()
             {
                 system("cls");
                 cayde.LookAtSelf();
-                if (cayde.GetCurrentArea()->GetName() == wailingMarsh.GetName())
-                {
-                    swampDweller.LookAtMonster();
-                }
-
-                if (cayde.GetCurrentArea()->GetName() == fallenFortress.GetName())
-                {
-                    runedGolem.LookAtMonster();
-                }
-
-                if (cayde.GetCurrentArea()->GetName() == cloudedCity.GetName())
-                {
-                    demonGhost.LookAtMonster();
-                }
+                cayde.GetCurrentArea()->GetMonster()->LookAtMonster();
                 std::cout << "Do you still wish to attack" << std::endl
                     << "    yes" << std::endl
                     << "    no" << std::endl;
@@ -139,7 +132,7 @@ int main()
                 if (userStringInput == "yes")
                 {
                     system("cls");
-                    swampDweller.DealDamage(&cayde);
+                    cayde.GetCurrentArea()->GetMonster()->DealDamage(&cayde);
                     if (!cayde.GetAlive())
                     {
                         std::cout << "You died" << std::endl;
