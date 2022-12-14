@@ -48,4 +48,5 @@ int Creature::GetHealth()
 void Creature::PotionEffectOnHealth(int changeInHealth)
 {
 	health += changeInHealth;
+	std::cout << this->name << " is now: " << this->health << std::endl;
 }

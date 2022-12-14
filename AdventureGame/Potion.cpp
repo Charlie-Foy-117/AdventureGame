@@ -24,3 +24,8 @@ void Potion::UsePotion(Player* effectPlayer)
 {
 	effectPlayer->PotionEffectOnHealth(heal);
 }
+
+int Potion::GetHeal()
+{
+	return heal;
+}

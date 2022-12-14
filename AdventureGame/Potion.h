@@ -12,6 +12,7 @@ public:
 
 	void UsePotion(Player* effectPlayer);
 
+	int GetHeal();
 private:
 
 	int heal;

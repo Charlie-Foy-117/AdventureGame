@@ -21,7 +21,5 @@ public:
 	//getter
 	bool GetAlive();
 
-private:
-	//variables
 };
 

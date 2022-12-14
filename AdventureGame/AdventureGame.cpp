@@ -14,7 +14,7 @@ int main()
 {
 
     //player classes
-    Player cayde("Cayde", "Gunslinger", 20, 10, nullptr);
+    Player cayde("Cayde", "Gunslinger", 20, 10, nullptr, {});
 
 
     //monster classes
@@ -32,6 +32,12 @@ int main()
 
     Area cloudedCity("Clouded_City", "Clouded City: The city above all", {}, nullptr);
 
+    //Items
+
+    Potion healthPotion("Small_Health_Potion", "This potion heals you for a small amount of health", 5);
+
+    //Functions
+    //area functions
     wailingMarsh.AddExit(&fallenFortress);
     wailingMarsh.AddExit(&cloudedCity);
 
@@ -47,25 +53,11 @@ int main()
 
     cloudedCity.SetMonster(&demonGhost);
 
-    //Items
-    Potion healthPotion("SmallHealthPotion", "This potion heals you for a small amount of health", 5);
-
-    //feature
-    /*
-    Feature lock;
-    lock.name = "Lock";
-    lock.description = "Can be unlocked with a key";
-
-    Feature sword;
-    sword.name = "Sword";
-    sword.description = "Strength potion can be used on it to increase damage";
-
-    Feature lever;
-    lever.name = "Lever";
-    lever.description = "When pulled boss fight starts";
-    */
+    //player functions
+    cayde.AddToInventory(&healthPotion);
 
     
+
     
     cayde.SetCurrentArea(&wailingMarsh);
     std::string userStringInput;
@@ -147,7 +139,16 @@ int main()
         }
         else if (userStringInput == "use")
         {
+            system("cls");
             std::cout << "Use what" << std::endl;
+            cayde.LookAtInventory();
+            std::cout << "  back" << std::endl;
+            std::cin >> userStringInput;
+            if (userStringInput == healthPotion.GetName())
+            {
+                cayde.PotionEffectOnHealth(healthPotion.GetHeal());
+            }
+
         }
         else if (userStringInput == "go")
         {
