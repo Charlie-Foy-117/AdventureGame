@@ -26,11 +26,8 @@ Player::~Player()
 
 void Player::LookAtSelf()
 {
-    std::cout << "Name: " << name << std::endl
-        << "Description: " << description << std::endl
-        << "Health: " << health << std::endl
-        << "Attack: " << attack << std::endl
-        << "Current Area: " << currentArea->GetName() << std::endl
+    Creature::Look();
+    std::cout << "Current Area: " << currentArea->GetName() << std::endl
         << " " << std::endl;
     LookAtInventory();
         
@@ -39,9 +36,16 @@ void Player::LookAtSelf()
 void Player::LookAtInventory()
 {
     std::cout << "Inventory: " << std::endl;
-    for (size_t i = 0; i < inventory.size(); i++)
+    if (inventory.size() >= 1)
     {
-        std::cout << "  " << inventory[i]->GetName() << std::endl;
+        for (size_t i = 0; i < inventory.size(); i++)
+        {
+            std::cout << inventory[i]->GetName() << std::endl;
+        }
+    }
+    else
+    {
+        std::cout << "Empty" << std::endl;
     }
 }
 

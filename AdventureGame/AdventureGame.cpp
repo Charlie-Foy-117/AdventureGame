@@ -7,7 +7,6 @@
 #include "Feature.h"
 #include "Area.h"
 #include "Potion.h"
-
 #include <map>
 
 int main()
@@ -26,15 +25,15 @@ int main()
 
     //area classes
 
-    Area wailingMarsh("Wailing_Marsh", "Wailing Marsh: The corrupted lands that speaks", {}, nullptr);
+    Area wailingMarsh("Wailing_Marsh", "Wailing Marsh: The corrupted lands that speaks", {}, {}, nullptr);
 
-    Area fallenFortress("Fallen_Fortress", "Fallen Fortress: The last memory of what once was", {}, nullptr);
+    Area fallenFortress("Fallen_Fortress", "Fallen Fortress: The last memory of what once was", {}, {}, nullptr);
 
-    Area cloudedCity("Clouded_City", "Clouded City: The city above all", {}, nullptr);
+    Area cloudedCity("Clouded_City", "Clouded City: The city above all", {}, {}, nullptr);
 
     //Items
 
-    Potion healthPotion("Small_Health_Potion", "This potion heals you for a small amount of health", 5);
+    Potion smallHealthPotion("Small_Health_Potion", "This potion heals you for a small amount of health", 5);
 
     //Functions
     //area functions
@@ -53,8 +52,10 @@ int main()
 
     cloudedCity.SetMonster(&demonGhost);
 
+    wailingMarsh.AddItemContent(&smallHealthPotion);
+
     //player functions
-    cayde.AddToInventory(&healthPotion);
+    //cayde.AddToInventory(&healthPotion);
 
     
 
@@ -100,6 +101,26 @@ int main()
                 system("cls");
 
                 cayde.GetCurrentArea()->Look();
+                if (cayde.GetCurrentArea()->GetItemContents().size() >= 1)
+                {
+                    std::cout << "Would you like to pick up an item" << std::endl
+                        << "   yes" << std::endl
+                        << "   no" << std::endl;
+                    std::cin >> userStringInput;
+                    if (userStringInput == "yes")
+                    {
+                        system("cls");
+                        std::cout << "What item would you like to pick up" << std::endl;
+                        cayde.GetCurrentArea()->LookAtContents();
+                        std::cin >> userStringInput;
+                        if (userStringInput == smallHealthPotion.GetName())
+                        {
+                            cayde.AddToInventory(&smallHealthPotion);
+                            system("cls");
+                            std::cout << "You picked up a/an: " << smallHealthPotion.GetName() << std::endl;
+                        }
+                    }
+                }
             }
 
         }
@@ -144,15 +165,15 @@ int main()
             cayde.LookAtInventory();
             std::cout << "  back" << std::endl;
             std::cin >> userStringInput;
-            if (userStringInput == healthPotion.GetName())
+            if (userStringInput == smallHealthPotion.GetName())
             {
                 system("cls");
-                std::cout << "Use " << healthPotion.GetName() << " on what" << std::endl
+                std::cout << "Use " << smallHealthPotion.GetName() << " on what" << std::endl
                     << "   self" << std::endl;
                 std::cin >> userStringInput;
                 if (userStringInput == "self")
                 {
-                    cayde.PotionEffectOnHealth(healthPotion.GetHeal());
+                    cayde.PotionEffectOnHealth(&smallHealthPotion);
                 }
             }
 

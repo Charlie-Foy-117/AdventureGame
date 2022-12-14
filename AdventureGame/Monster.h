@@ -14,7 +14,6 @@ public:
 	~Monster();
 
 	//functions
-	void PrintMonster();
 	void DealDamage(Player* myPlayer);
 	void LookAtMonster();
 

@@ -1,19 +1,22 @@
 #include "Area.h"
 #include "Player.h"
+#include "Item.h"
 #include <iostream>
 
 
 Area::Area()
     :Thing()
     ,exits()
+    ,itemContents()
     ,monster(nullptr)
 {
     std::cout << "Area: " << name << " was created" << std::endl;
 }
 
-Area::Area(std::string newName, std::string newDescription, std::vector<Area*> newExits, Monster* newMonster)
+Area::Area(std::string newName, std::string newDescription, std::vector<Area*> newExits, std::vector<Item*> newItemContents, Monster* newMonster)
     :Thing(newName, newDescription)
     ,exits(newExits)
+    ,itemContents(newItemContents)
     ,monster(newMonster)
 {
     std::cout << "Area: " << name << " was created using parameters" << std::endl;
@@ -47,6 +50,20 @@ void Area::Look()
 		std::cout << exits[i]->name << std::endl;
 	}
     std::cout << " " << std::endl;
+    LookAtContents();
+    std::cout << " " << std::endl;
+}
+
+void Area::LookAtContents()
+{
+    if (itemContents.size() >= 1)
+    {
+        std::cout << "Contents: " << std::endl;
+        for (size_t i = 0; i < itemContents.size(); i++)
+        {
+            std::cout << itemContents[i]->GetName() << std::endl;
+        }
+    }
 }
 
 void Area::Go(Player* newCurrentArea, std::string target)
@@ -73,6 +90,16 @@ void Area::AddExit(Area* newExit)
     exits.push_back(newExit);
 }
 
+void Area::AddItemContent(Item* newItem)
+{
+    itemContents.push_back(newItem);
+}
+
+void Area::PickUpItem(Item* itemToPickup)
+{
+    itemContents.erase(itemContents.begin(), itemContents.end());
+}
+
 void Area::SetMonster(Monster* newMonster)
 {
     monster = newMonster;
@@ -86,4 +113,9 @@ std::vector<Area*> Area::GetExits()
 Monster* Area::GetMonster()
 {
     return monster;
+}
+
+std::vector<Item*> Area::GetItemContents()
+{
+    return itemContents;
 }

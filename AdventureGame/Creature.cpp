@@ -1,4 +1,5 @@
 #include "Creature.h"
+#include "Potion.h"
 
 Creature::Creature()
 	:Thing()
@@ -45,8 +46,8 @@ int Creature::GetHealth()
 	return health;
 }
 
-void Creature::PotionEffectOnHealth(int changeInHealth)
+void Creature::PotionEffectOnHealth(Potion* potion)
 {
-	health += changeInHealth;
+	health += potion->GetHeal();
 	std::cout << this->name << " is now: " << this->health << std::endl;
 }

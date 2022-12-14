@@ -1,5 +1,6 @@
 #pragma once
 #include "Thing.h"
+class Potion;
 
 class Creature : public Thing
 {
@@ -14,7 +15,7 @@ public:
 	int GetAttack();
 	int GetHealth();
 
-	void PotionEffectOnHealth(int changeInHealth);
+	void PotionEffectOnHealth(Potion* potion);
 
 protected:
 
