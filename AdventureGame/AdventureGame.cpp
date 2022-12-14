@@ -146,7 +146,14 @@ int main()
             std::cin >> userStringInput;
             if (userStringInput == healthPotion.GetName())
             {
-                cayde.PotionEffectOnHealth(healthPotion.GetHeal());
+                system("cls");
+                std::cout << "Use " << healthPotion.GetName() << " on what" << std::endl
+                    << "   self" << std::endl;
+                std::cin >> userStringInput;
+                if (userStringInput == "self")
+                {
+                    cayde.PotionEffectOnHealth(healthPotion.GetHeal());
+                }
             }
 
         }
