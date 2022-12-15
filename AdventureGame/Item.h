@@ -8,6 +8,7 @@ public:
 
 	Item();
 	Item(std::string newName, std::string newDescription);
-	~Item();
+	virtual ~Item();
+
 };
 

@@ -22,7 +22,7 @@ public:
 	void Go(Player* currentArea, std::string target);
 	void AddExit(Area* newExit);
 	void AddItemContent(Item* newItem);
-	void PickUpItem(Item* itemToPickup);
+	void PickUpItem(Item* itemToPickup, Player* myPlayer);
 
 	//setters
 	void SetMonster(Monster* newMonster);

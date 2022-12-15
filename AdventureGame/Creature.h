@@ -1,5 +1,6 @@
 #pragma once
 #include "Thing.h"
+class Item;
 class Potion;
 
 class Creature : public Thing
@@ -11,11 +12,13 @@ public:
 
 	void Look();
 	void TakeDamage(int takenDamage);
+	void DealDamage(int dealtDamage, Creature* target);
 
 	int GetAttack();
 	int GetHealth();
 
-	void PotionEffectOnHealth(Potion* potion);
+	void PotionEffect(Potion* potion);
+	virtual void Use(std::string target, Item* itemToUse, Creature* myCreature);
 
 protected:
 

@@ -68,11 +68,11 @@ int main()
     do
     { 
         std::cout << "What would you like to do: " << std::endl
-            << "   look" << std::endl
-            << "   attack" << std::endl
-            << "   use" << std::endl
-            << "   go" << std::endl
-            << "   quit" << std::endl;
+            << "look" << std::endl
+            << "attack" << std::endl
+            << "use" << std::endl
+            << "go" << std::endl
+            << "quit" << std::endl;
         
         std::cin >> userStringInput;
 
@@ -85,9 +85,9 @@ int main()
             system("cls");
 
             std::cout << "Look where?" << std::endl
-                << "    self" << std::endl
-                << "    here" << std::endl
-                << "    quit" << std::endl;
+                << "self" << std::endl
+                << "here" << std::endl
+                << "quit" << std::endl;
 
             std::cin >> userStringInput;
             if (userStringInput == "self")
@@ -104,8 +104,8 @@ int main()
                 if (cayde.GetCurrentArea()->GetItemContents().size() >= 1)
                 {
                     std::cout << "Would you like to pick up an item" << std::endl
-                        << "   yes" << std::endl
-                        << "   no" << std::endl;
+                        << "yes" << std::endl
+                        << "no" << std::endl;
                     std::cin >> userStringInput;
                     if (userStringInput == "yes")
                     {
@@ -115,9 +115,7 @@ int main()
                         std::cin >> userStringInput;
                         if (userStringInput == smallHealthPotion.GetName())
                         {
-                            cayde.AddToInventory(&smallHealthPotion);
-                            system("cls");
-                            std::cout << "You picked up a/an: " << smallHealthPotion.GetName() << std::endl;
+                            cayde.GetCurrentArea()->PickUpItem(&smallHealthPotion, &cayde);
                         }
                     }
                 }
@@ -129,7 +127,7 @@ int main()
             system("cls");
 
             std::cout << "What would you like to attack" << std::endl
-                << "    monster" << std::endl;
+                << "monster" << std::endl;
 
             std::cin >> userStringInput;
 
@@ -139,13 +137,13 @@ int main()
                 cayde.LookAtSelf();
                 cayde.GetCurrentArea()->GetMonster()->LookAtMonster();
                 std::cout << "Do you still wish to attack" << std::endl
-                    << "    yes" << std::endl
-                    << "    no" << std::endl;
+                    << "yes" << std::endl
+                    << "no" << std::endl;
                 std::cin >> userStringInput;
                 if (userStringInput == "yes")
                 {
                     system("cls");
-                    cayde.GetCurrentArea()->GetMonster()->DealDamage(&cayde);
+                    cayde.DealDamage(cayde.GetAttack(),cayde.GetCurrentArea()->GetMonster());
                     if (!cayde.GetAlive())
                     {
                         std::cout << "You died" << std::endl;
@@ -163,18 +161,15 @@ int main()
             system("cls");
             std::cout << "Use what" << std::endl;
             cayde.LookAtInventory();
-            std::cout << "  back" << std::endl;
+            std::cout << "back" << std::endl;
             std::cin >> userStringInput;
             if (userStringInput == smallHealthPotion.GetName())
             {
                 system("cls");
-                std::cout << "Use " << smallHealthPotion.GetName() << " on what" << std::endl
-                    << "   self" << std::endl;
+                std::cout << "Use " << userStringInput << " on what" << std::endl
+                    << "self" << std::endl;
                 std::cin >> userStringInput;
-                if (userStringInput == "self")
-                {
-                    cayde.PotionEffectOnHealth(&smallHealthPotion);
-                }
+                cayde.Use(userStringInput, &smallHealthPotion, &cayde);
             }
 
         }

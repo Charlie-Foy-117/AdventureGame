@@ -14,7 +14,6 @@ public:
 	~Monster();
 
 	//functions
-	void DealDamage(Player* myPlayer);
 	void LookAtMonster();
 
 	//getter

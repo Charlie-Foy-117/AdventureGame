@@ -95,9 +95,13 @@ void Area::AddItemContent(Item* newItem)
     itemContents.push_back(newItem);
 }
 
-void Area::PickUpItem(Item* itemToPickup)
+void Area::PickUpItem(Item* itemToPickup, Player* myPlayer)
 {
-    itemContents.erase(itemContents.begin(), itemContents.end());
+    std::vector<Item*>::iterator iterator = itemToPickup;
+    itemContents.erase(iterator);
+    myPlayer->AddToInventory(itemToPickup);
+    system("cls");
+    std::cout << "You picked up a/an: " << itemToPickup->GetName() << std::endl;
 }
 
 void Area::SetMonster(Monster* newMonster)
