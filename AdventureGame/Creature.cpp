@@ -1,6 +1,7 @@
 #include "Creature.h"
 #include "Potion.h"
 #include "Item.h"
+#include "Player.h"
 
 Creature::Creature()
 	:Thing()
@@ -88,6 +89,8 @@ void Creature::Use(std::string target, Item* itemToUse, Creature* myCreature)
 		{
 			Potion* potionToUse = dynamic_cast<Potion*>(itemToUse);
 			myCreature->PotionEffect(potionToUse);
+			Player* myPlayer = dynamic_cast<Player*>(this);
+			myPlayer->RemoveFromInventory(itemToUse);
 		}
 	}
 	else if (target == "monster")

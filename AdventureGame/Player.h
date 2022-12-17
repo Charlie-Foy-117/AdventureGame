@@ -17,10 +17,12 @@ public:
 	void LookAtSelf();
 	void LookAtInventory();
 	void AddToInventory(Item* itemToAdd);
+	void RemoveFromInventory(Item* itemToUse);
 
 	//getters
 	Area* GetCurrentArea();
 	bool GetAlive();
+	std::vector<Item*> GetInventory();
 
 	//setters
 	void SetCurrentArea(Area* newCurrentArea);

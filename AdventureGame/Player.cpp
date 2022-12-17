@@ -54,6 +54,17 @@ void Player::AddToInventory(Item* itemToAdd)
     inventory.push_back(itemToAdd);
 }
 
+void Player::RemoveFromInventory(Item* itemToUse)
+{
+    for (size_t i = 0; i < inventory.size(); i++)
+    {
+        if (inventory[i] == itemToUse)
+        {
+            inventory.erase(inventory.begin() + i);
+        }
+    }
+}
+
 Area* Player::GetCurrentArea()
 {
     return currentArea;
@@ -62,6 +73,11 @@ Area* Player::GetCurrentArea()
 bool Player::GetAlive()
 {
     return health > 0;
+}
+
+std::vector<Item*> Player::GetInventory()
+{
+    return inventory;
 }
 
 void Player::SetCurrentArea(Area* newCurrentArea)
