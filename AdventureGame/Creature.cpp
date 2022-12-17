@@ -92,7 +92,11 @@ void Creature::Use(std::string target, Item* itemToUse, Creature* myCreature)
 	}
 	else if (target == "monster")
 	{
-		//for later use
+		if (itemToUse->GetName() == "Small_Health_Potion")
+		{
+			Potion* potionToUse = dynamic_cast<Potion*>(itemToUse);
+			myCreature->PotionEffect(potionToUse);
+		}
 	}
 	else
 	{

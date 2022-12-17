@@ -161,7 +161,7 @@ int main()
             system("cls");
             std::cout << "Use what" << std::endl;
             cayde.LookAtInventory();
-            std::cout << "back" << std::endl;
+            std::cout << "5back" << std::endl;
             std::cin >> userStringInput;
             if (userStringInput == smallHealthPotion.GetName())
             {

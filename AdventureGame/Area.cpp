@@ -97,8 +97,13 @@ void Area::AddItemContent(Item* newItem)
 
 void Area::PickUpItem(Item* itemToPickup, Player* myPlayer)
 {
-    std::vector<Item*>::iterator iterator = itemToPickup;
-    itemContents.erase(iterator);
+    for (size_t i = 0; i < itemContents.size(); i++)
+    {
+        if (itemContents[i] == itemToPickup)
+        {
+            itemContents.erase(itemContents.begin() + i);
+        }
+    }
     myPlayer->AddToInventory(itemToPickup);
     system("cls");
     std::cout << "You picked up a/an: " << itemToPickup->GetName() << std::endl;
